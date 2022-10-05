@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">room_exam</string>
+    <string name="app_name">TodoList Java</string>
+
+    <string name="first_fragment_label">Todo List</string>
+
+    <string name="second_fragment_label">Add</string>
+    <string name="hint_text">할 일</string>
 </resources>
