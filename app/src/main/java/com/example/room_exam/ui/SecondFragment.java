@@ -35,7 +35,7 @@ public class SecondFragment extends Fragment {
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
-        Calendar cal = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         Todo item = viewModel.seletedTodo;
 
         // 선택된 할 일이 없을 때
@@ -49,28 +49,28 @@ public class SecondFragment extends Fragment {
         }
 
         binding.calendarView.setOnDateChangeListener((calendarView, year, month, dayOfMonth) -> {
-            cal.set(Calendar.YEAR, year);
-            cal.set(Calendar.MONTH, month);
-            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            if (item != null) {
+                item.setDate(calendar.getTime().getTime());
+            }
         });
 
-        // 등록
         binding.doneFab.setOnClickListener(v -> {
             String inputText = binding.todoEditText.getText().toString();
             if (inputText.isEmpty()) {
-                Toast.makeText(getActivity(), "할 일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.message), Toast.LENGTH_SHORT).show();
                 return;
             }
-
             if (item != null) {
-                viewModel.updateTodo(inputText, cal.getTime().getTime());
+                viewModel.updateTodo(inputText, calendar.getTime().getTime());
             } else {
-                viewModel.addTodo(inputText, cal.getTime().getTime());
+                viewModel.addTodo(inputText, calendar.getTime().getTime());
             }
             NavHostFragment.findNavController(SecondFragment.this).popBackStack();
         });
 
-        // 삭제
         binding.deleteFab.setOnClickListener(v -> {
             if (item != null) {
                 viewModel.deleteTodo(item.getId());

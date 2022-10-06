@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.example.room_exam.data.Todo;
 import com.example.room_exam.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
+    private static final String TAG = "FirstFragment";
     private MainViewModel viewModel;
 
     private FragmentFirstBinding binding;
@@ -45,7 +47,10 @@ public class FirstFragment extends Fragment {
         binding.recyclerView.setAdapter(adapter);
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        viewModel._items.observe(getViewLifecycleOwner(), todos -> adapter.submitList(todos));
+        viewModel.todoLiveData.observe(getViewLifecycleOwner(), todos -> {
+            Log.d(TAG, "onViewCreated: todos = " + todos);
+            adapter.submitList(todos);
+        });
 
         // 추가
         binding.addFab.setOnClickListener(v -> {

@@ -17,7 +17,12 @@ public class MainViewModel extends AndroidViewModel {
     private final AppDatabase db;
     public Todo seletedTodo = null;
 
-    public MutableLiveData<List<Todo>> _items = new MutableLiveData<>();
+    public MutableLiveData<List<Todo>> todoLiveData = new MutableLiveData<>();
+
+    private void setTodoLiveData() {
+        todoLiveData.setValue(db.todoDao().getAll());
+        seletedTodo = null;
+    }
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -25,22 +30,22 @@ public class MainViewModel extends AndroidViewModel {
                 .allowMainThreadQueries()
                 .build();// 전역으로
 
-        _items.setValue(db.todoDao().getAll());
+        setTodoLiveData();
     }
 
     void addTodo(String text, Long date) {
         db.todoDao().insert(new Todo(text, date));
-        seletedTodo = null;
+        setTodoLiveData();
     }
 
     void deleteTodo(long id) {
-        for (Todo item : _items.getValue()) {
+        for (Todo item : todoLiveData.getValue()) {
             if (item.getId() == id) {
                 db.todoDao().delete(item);
                 break;
             }
         }
-        seletedTodo = null;
+        setTodoLiveData();
     }
 
     void updateTodo(String text, Long date) {
@@ -50,7 +55,7 @@ public class MainViewModel extends AndroidViewModel {
         }
 
         db.todoDao().update(seletedTodo);
-        seletedTodo = null;
+        setTodoLiveData();
     }
 
 }
