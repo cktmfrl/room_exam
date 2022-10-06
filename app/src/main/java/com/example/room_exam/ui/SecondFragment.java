@@ -1,4 +1,4 @@
-package com.example.room_exam;
+package com.example.room_exam.ui;
 
 import android.os.Bundle;
 
@@ -12,8 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.room_exam.R;
+import com.example.room_exam.data.Todo;
 import com.example.room_exam.databinding.FragmentSecondBinding;
-
 
 public class SecondFragment extends Fragment {
     private MainViewModel viewModel;
@@ -35,8 +36,11 @@ public class SecondFragment extends Fragment {
         Todo item = viewModel.seletedTodo;
         if (item != null) {
             Log.d("SecondFragmet", "onViewCreated: seletedTodo = " + item);
+            getActivity().setTitle(getResources().getString(R.string.edit_label));
             binding.todoEditText.setText(item.getTitle());
             binding.calendarView.setDate(item.getDate());
+        } else {
+            getActivity().setTitle(getResources().getString(R.string.add_label));
         }
 
         // 등록

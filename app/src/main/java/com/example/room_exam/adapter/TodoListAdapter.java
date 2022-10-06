@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.room_exam.FirstFragment;
-import com.example.room_exam.Todo;
+import com.example.room_exam.ui.FirstFragment;
+import com.example.room_exam.data.Todo;
 import com.example.room_exam.databinding.ItemTodoBinding;
 
 public class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.TodoViewHolder> {

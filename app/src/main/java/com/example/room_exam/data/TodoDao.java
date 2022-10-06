@@ -1,4 +1,4 @@
-package com.example.room_exam;
+package com.example.room_exam.data;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    android:label="s"
-    app:startDestination="@id/firstFragment">
+    app:startDestination="@id/navigation_todo_list">
 
     <fragment
-        android:id="@+id/firstFragment"
-        android:name="com.example.room_exam.FirstFragment"
-        android:label="@string/first_fragment_label"
+        android:id="@+id/navigation_todo_list"
+        android:name="com.example.room_exam.ui.FirstFragment"
+        android:label="@string/todo_list_label"
         tools:layout="@layout/fragment_first">
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/secondFragment" />
+            app:destination="@id/navigation_todo_edit" />
     </fragment>
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.example.room_exam.SecondFragment"
-        android:label="@string/second_fragment_label"
+        android:id="@+id/navigation_todo_edit"
+        android:name="com.example.room_exam.ui.SecondFragment"
+        android:label="@string/add_label"
         tools:layout="@layout/fragment_second">
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/firstFragment" />
+            app:destination="@id/navigation_todo_list"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
