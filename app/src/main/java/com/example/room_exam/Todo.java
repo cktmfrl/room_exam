@@ -3,22 +3,17 @@ package com.example.room_exam;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity
 public class Todo {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
     private String title;
+    @PrimaryKey(autoGenerate = true)
+    private long date;
 
-    public Todo(String title) {
+    public Todo(String title, Long date) {
         this.title = title;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.date = date;
     }
 
     public String getTitle() {
@@ -29,11 +24,32 @@ public class Todo {
         this.title = title;
     }
 
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "Todo{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
+                ", date='" + date + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Todo todo = (Todo) o;
+        return Objects.equals(title, todo.title) && Objects.equals(date, todo.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, date);
     }
 }

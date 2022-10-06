@@ -4,8 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import com.example.room_exam.databinding.FragmentSecondBinding;
 
 
 public class SecondFragment extends Fragment {
+    private MainViewModel viewModel;
 
     private FragmentSecondBinding binding;
 
@@ -27,13 +30,30 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.doneFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+
+        Todo item = viewModel.seletedTodo;
+        if (item != null) {
+            Log.d("SecondFragmet", "onViewCreated: seletedTodo = " + item);
+            binding.todoEditText.setText(item.getTitle());
+            binding.calendarView.setDate(item.getDate());
+        }
+
+        // 등록
+        binding.doneFab.setOnClickListener(v -> {
+            String inputText = binding.todoEditText.getText().toString();
+            if (!inputText.isEmpty()) {
+                if (viewModel.seletedTodo != null) {
+                    viewModel.updateTodo(inputText);
+                } else {
+                    Long date = binding.calendarView.getDate();
+                    Log.d("SecondFragmet", "onViewCreated: date = " + date);
+                    viewModel.addTodo(inputText, date);
+                }
+                NavHostFragment.findNavController(SecondFragment.this).popBackStack();
             }
         });
+
     }
 
     @Override

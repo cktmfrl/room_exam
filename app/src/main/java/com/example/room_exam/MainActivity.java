@@ -30,22 +30,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-
-
-//        final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, "todo-db")
-//                .allowMainThreadQueries()
-//                .build();// 전역으로
-//
-//
-//        mResuiltTextView.setText(db.todoDao().getAll().toString());
-//
-//        findViewById(R.id.add_button).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                db.todoDao().insert(new Todo(mTodoEditText.getText().toString()));
-//                mResuiltTextView.setText(db.todoDao().getAll().toString());// 메서드
-//            }
-//        });
     }
+
 }
