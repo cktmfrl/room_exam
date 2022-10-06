@@ -10,7 +10,6 @@ import androidx.room.Room;
 import com.example.room_exam.data.AppDatabase;
 import com.example.room_exam.data.Todo;
 
-import java.util.Calendar;
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
@@ -29,30 +28,25 @@ public class MainViewModel extends AndroidViewModel {
         _items.setValue(db.todoDao().getAll());
     }
 
-    void addTodo(String text) {
-        Long date = Calendar.getInstance().getTimeInMillis();
-        db.todoDao().insert(new Todo(text, date));
-    }
-
     void addTodo(String text, Long date) {
         db.todoDao().insert(new Todo(text, date));
+        seletedTodo = null;
     }
 
-    void deleteTodo(int id) {
+    void deleteTodo(long id) {
         for (Todo item : _items.getValue()) {
-            if (item.getDate() == id) {
+            if (item.getId() == id) {
                 db.todoDao().delete(item);
                 break;
             }
         }
-
         seletedTodo = null;
     }
 
-    void updateTodo(String text) {
+    void updateTodo(String text, Long date) {
         if (seletedTodo != null) {
             seletedTodo.setTitle(text);
-            seletedTodo.setDate(Calendar.getInstance().getTimeInMillis());
+            seletedTodo.setDate(date);
         }
 
         db.todoDao().update(seletedTodo);

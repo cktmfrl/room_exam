@@ -11,7 +11,7 @@ public class TodoDiffUtilCallBack extends DiffUtil.ItemCallback<Todo> {
 
     @Override
     public boolean areItemsTheSame(@NonNull Todo oldItem, @NonNull Todo newItem) {
-        return Objects.equals(oldItem.getDate(), newItem.getDate());
+        return Objects.equals(oldItem.getId(), newItem.getId());
     }
 
     @Override

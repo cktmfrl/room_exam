@@ -7,13 +7,22 @@ import java.util.Objects;
 
 @Entity
 public class Todo {
-    private String title;
     @PrimaryKey(autoGenerate = true)
+    private int id;
+    private String title;
     private long date;
 
     public Todo(String title, Long date) {
         this.title = title;
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -35,8 +44,9 @@ public class Todo {
     @Override
     public String toString() {
         return "Todo{" +
-                "title='" + title + '\'' +
-                ", date='" + date + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", date=" + date +
                 '}';
     }
 
@@ -45,11 +55,12 @@ public class Todo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Todo todo = (Todo) o;
-        return Objects.equals(title, todo.title) && Objects.equals(date, todo.date);
+        return id == todo.id && date == todo.date && Objects.equals(title, todo.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, date);
+        return Objects.hash(id, title, date);
     }
+
 }

@@ -48,7 +48,7 @@ public class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.TodoViewH
 
         public void bind(Todo todo) {
             binding.titleTextView.setText(todo.getTitle());
-            binding.dateTextView.setText(DateFormat.format("yyyy/MM/dd HH:mm:ss", todo.getDate()));
+            binding.dateTextView.setText(DateFormat.format("yyyy/MM/dd", todo.getDate()));
         }
 
         public void setOnClickListener(Todo todo) {

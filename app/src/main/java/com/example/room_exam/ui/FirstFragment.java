@@ -47,7 +47,9 @@ public class FirstFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         viewModel._items.observe(getViewLifecycleOwner(), todos -> adapter.submitList(todos));
 
+        // 추가
         binding.addFab.setOnClickListener(v -> {
+            viewModel.seletedTodo = null;
             NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
         });
 

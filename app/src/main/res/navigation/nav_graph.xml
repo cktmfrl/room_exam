@@ -17,7 +17,6 @@
     <fragment
         android:id="@+id/navigation_todo_edit"
         android:name="com.example.room_exam.ui.SecondFragment"
-        android:label="@string/add_label"
         tools:layout="@layout/fragment_second">
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
