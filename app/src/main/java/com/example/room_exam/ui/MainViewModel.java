@@ -7,8 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.room.Room;
 
-import com.example.room_exam.data.AppDatabase;
-import com.example.room_exam.data.Todo;
+import com.example.room_exam.db.AppDatabase;
+import com.example.room_exam.models.Todo;
 
 import java.util.List;
 

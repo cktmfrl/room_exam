@@ -17,20 +17,20 @@ import android.view.ViewGroup;
 import com.example.room_exam.R;
 import com.example.room_exam.adapter.TodoDiffUtilCallBack;
 import com.example.room_exam.adapter.TodoListAdapter;
-import com.example.room_exam.data.Todo;
-import com.example.room_exam.databinding.FragmentFirstBinding;
+import com.example.room_exam.databinding.FragmentTodoListBinding;
+import com.example.room_exam.models.Todo;
 
-public class FirstFragment extends Fragment {
+public class TodoListFragment extends Fragment {
     private static final String TAG = "FirstFragment";
     private MainViewModel viewModel;
 
-    private FragmentFirstBinding binding;
+    private FragmentTodoListBinding binding;
     private TodoListAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        binding = FragmentTodoListBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -40,7 +40,7 @@ public class FirstFragment extends Fragment {
 
         adapter = new TodoListAdapter(new TodoDiffUtilCallBack(), todo -> {
             viewModel.seletedTodo = todo;
-            NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
+            NavHostFragment.findNavController(TodoListFragment.this).navigate(R.id.action_ListFragment_to_EditFragment);
         });
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -55,7 +55,7 @@ public class FirstFragment extends Fragment {
         // 추가
         binding.addFab.setOnClickListener(v -> {
             viewModel.seletedTodo = null;
-            NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_SecondFragment);
+            NavHostFragment.findNavController(TodoListFragment.this).navigate(R.id.action_ListFragment_to_EditFragment);
         });
 
     }

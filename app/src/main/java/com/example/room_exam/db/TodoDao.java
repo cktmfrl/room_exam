@@ -1,10 +1,12 @@
-package com.example.room_exam.data;
+package com.example.room_exam.db;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.example.room_exam.models.Todo;
 
 import java.util.List;
 

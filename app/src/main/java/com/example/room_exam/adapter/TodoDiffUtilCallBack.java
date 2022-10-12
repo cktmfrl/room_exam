@@ -3,7 +3,7 @@ package com.example.room_exam.adapter;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.example.room_exam.data.Todo;
+import com.example.room_exam.models.Todo;
 
 import java.util.Objects;
 

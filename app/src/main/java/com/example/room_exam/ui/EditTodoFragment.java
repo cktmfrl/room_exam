@@ -14,19 +14,19 @@ import android.widget.Toast;
 
 import com.example.room_exam.MainActivity;
 import com.example.room_exam.R;
-import com.example.room_exam.data.Todo;
-import com.example.room_exam.databinding.FragmentSecondBinding;
+import com.example.room_exam.databinding.FragmentEditTodoBinding;
+import com.example.room_exam.models.Todo;
 
 import java.util.Calendar;
 
-public class SecondFragment extends Fragment {
+public class EditTodoFragment extends Fragment {
     private MainViewModel viewModel;
-    private FragmentSecondBinding binding;
+    private FragmentEditTodoBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
+        binding = FragmentEditTodoBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -68,14 +68,14 @@ public class SecondFragment extends Fragment {
             } else {
                 viewModel.addTodo(inputText, calendar.getTime().getTime());
             }
-            NavHostFragment.findNavController(SecondFragment.this).popBackStack();
+            NavHostFragment.findNavController(EditTodoFragment.this).popBackStack();
         });
 
         binding.deleteFab.setOnClickListener(v -> {
             if (item != null) {
                 viewModel.deleteTodo(item.getId());
             }
-            NavHostFragment.findNavController(SecondFragment.this).popBackStack();
+            NavHostFragment.findNavController(EditTodoFragment.this).popBackStack();
         });
     }
 

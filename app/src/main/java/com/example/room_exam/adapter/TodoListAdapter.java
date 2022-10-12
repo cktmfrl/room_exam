@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.room_exam.ui.FirstFragment;
-import com.example.room_exam.data.Todo;
+import com.example.room_exam.ui.TodoListFragment;
+import com.example.room_exam.models.Todo;
 import com.example.room_exam.databinding.ItemTodoBinding;
 
 public class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.TodoViewHolder> {
     private ItemTodoBinding binding;
-    private FirstFragment.ItemClickListener callback;
+    private TodoListFragment.ItemClickListener callback;
 
-    public TodoListAdapter(@NonNull DiffUtil.ItemCallback diffCallback, FirstFragment.ItemClickListener callback) {
+    public TodoListAdapter(@NonNull DiffUtil.ItemCallback diffCallback, TodoListFragment.ItemClickListener callback) {
         super(diffCallback);
         this.callback = callback;
     }
@@ -39,9 +39,9 @@ public class TodoListAdapter extends ListAdapter<Todo, TodoListAdapter.TodoViewH
 
     class TodoViewHolder extends RecyclerView.ViewHolder {
 
-        private FirstFragment.ItemClickListener listener;
+        private TodoListFragment.ItemClickListener listener;
 
-        public TodoViewHolder(@NonNull View itemView, FirstFragment.ItemClickListener listener) {
+        public TodoViewHolder(@NonNull View itemView, TodoListFragment.ItemClickListener listener) {
             super(itemView);
             this.listener = listener;
         }

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_todo_list"
-        android:name="com.example.room_exam.ui.FirstFragment"
+        android:name="com.example.room_exam.ui.TodoListFragment"
         android:label="@string/todo_list_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_todo_list">
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            android:id="@+id/action_ListFragment_to_EditFragment"
             app:destination="@id/navigation_todo_edit" />
     </fragment>
     <fragment
         android:id="@+id/navigation_todo_edit"
-        android:name="com.example.room_exam.ui.SecondFragment"
-        tools:layout="@layout/fragment_second">
+        android:name="com.example.room_exam.ui.EditTodoFragment"
+        tools:layout="@layout/fragment_edit_todo">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            android:id="@+id/action_EditFragment_to_ListFragment"
             app:destination="@id/navigation_todo_list"
             app:popUpToInclusive="true" />
     </fragment>
